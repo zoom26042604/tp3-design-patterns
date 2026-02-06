@@ -1,39 +1,25 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("=== BurgerFast - Système de Suivi de Commandes ===\n");
+        System.out.println("=== BurgerFast - Systeme de Promotion ===\n");
 
-        StatutCommande commande = new StatutCommande("#12345");
+        BurgerFastRestaurant restaurant = new BurgerFastRestaurant();
 
-        Client client = new Client("Jean Dupont");
-        Cuisinier cuisinier = new Cuisinier("Chef Marcel");
-        Livreur livreur = new Livreur("Paul");
+        ClientVIP client1 = new ClientVIP("Jean Dupont");
+        ClientVIP client2 = new ClientVIP("Marie Martin");
+        ClientVIP client3 = new ClientVIP("Pierre Dubois");
 
-        System.out.println("Configuration des notifications:");
-        commande.ajouterObserver(client);
-        commande.ajouterObserver(cuisinier);
-        commande.ajouterObserver(livreur);
+        restaurant.ajouterClientVIP(client1);
+        restaurant.ajouterClientVIP(client2);
+        restaurant.ajouterClientVIP(client3);
+
+        restaurant.lancerPromotionFlash("Menu Midi", 20);
 
         System.out.println();
-        
-        commande.changerStatut("Confirmee");
-        
-        try { Thread.sleep(1000); } catch (InterruptedException e) {}
-        
-        commande.changerStatut("En préparation");
-        
-        try { Thread.sleep(1000); } catch (InterruptedException e) {}
-        
-        commande.changerStatut("Prête");
-        
-        try { Thread.sleep(1000); } catch (InterruptedException e) {}
-        
-        commande.changerStatut("En livraison");
-        
-        try { Thread.sleep(1000); } catch (InterruptedException e) {}
-        
-        commande.changerStatut("Livree");
 
-        System.out.println("\nLe pattern Observer permet de notifier automatiquement");
-        System.out.println("tous les observateurs lors d'un changement de statut!");
+        restaurant.lancerPromotionFlash("Happy Hour", 30);
+
+        System.out.println();
+
+        restaurant.lancerPromotionFlash("Week-end Special", 15);
     }
 }
